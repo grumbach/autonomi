@@ -6,6 +6,7 @@
 // KIND, either express or implied. Please review the Licences for the specific language governing
 // permissions and limitations relating to use of the SAFE Network Software.
 
+mod analyze;
 mod file;
 mod register;
 mod vault;
@@ -40,6 +41,15 @@ pub enum SubCmd {
     Wallet {
         #[command(subcommand)]
         command: WalletCmd,
+    },
+
+    /// Operations related to data analysis.
+    Analyze {
+        /// The address of the data to analyse.
+        addr: String,
+        /// Verbose output. Detailed description of the analysis.
+        #[arg(short, long)]
+        verbose: bool,
     },
 }
 
@@ -279,6 +289,9 @@ pub async fn handle_subcommand(opt: Opt) -> Result<()> {
             WalletCmd::Export => wallet::export(),
             WalletCmd::Balance => wallet::balance(peers.await?.is_local()).await,
         },
+        Some(SubCmd::Analyze { addr, verbose }) => {
+            analyze::analyze(&addr, verbose, peers.await?).await
+        }
         None => {
             // If no subcommand is given, default to clap's error behaviour.
             Opt::command()
