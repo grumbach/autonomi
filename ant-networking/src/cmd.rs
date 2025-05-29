@@ -97,11 +97,11 @@ pub enum LocalSwarmCmd {
     /// Check if the local RecordStore contains the provided key
     RecordStoreHasKey {
         key: RecordKey,
-        sender: oneshot::Sender<Result<bool>>,
+        sender: oneshot::Sender<bool>,
     },
     /// Get the Addresses of all the Records held locally
     GetAllLocalRecordAddresses {
-        sender: oneshot::Sender<Result<HashMap<NetworkAddress, ValidationType>>>,
+        sender: oneshot::Sender<HashMap<NetworkAddress, ValidationType>>,
     },
     /// Get data from the local RecordStore
     GetLocalRecord {
@@ -114,7 +114,7 @@ pub enum LocalSwarmCmd {
         key: RecordKey,
         data_type: u32,
         data_size: usize,
-        sender: oneshot::Sender<Result<(QuotingMetrics, bool)>>,
+        sender: oneshot::Sender<(QuotingMetrics, bool)>,
     },
     /// Notify the node received a payment.
     PaymentReceived,
@@ -534,7 +534,7 @@ impl SwarmDriver {
                 cmd_string = "GetLocalQuotingMetrics";
                 let kbucket_status = self.get_kbuckets_status();
                 self.update_on_kbucket_status(&kbucket_status);
-                let (quoting_metrics, is_already_stored) = match self
+                let (quoting_metrics, is_already_stored) = self
                     .swarm
                     .behaviour_mut()
                     .kademlia
@@ -544,13 +544,7 @@ impl SwarmDriver {
                         data_type,
                         data_size,
                         Some(kbucket_status.estimated_network_size as u64),
-                    ) {
-                    Ok(res) => res,
-                    Err(err) => {
-                        let _res = sender.send(Err(err));
-                        return Ok(());
-                    }
-                };
+                    );
                 self.record_metrics(Marker::QuotingMetrics {
                     quoting_metrics: &quoting_metrics,
                 });
@@ -589,7 +583,7 @@ impl SwarmDriver {
                         .retain(|peer_addr| key_address.distance(peer_addr) < boundary_distance);
                 }
 
-                let _res = sender.send(Ok((quoting_metrics, is_already_stored)));
+                let _res = sender.send((quoting_metrics, is_already_stored));
             }
             LocalSwarmCmd::PaymentReceived => {
                 cmd_string = "PaymentReceived";
@@ -663,7 +657,7 @@ impl SwarmDriver {
                             .behaviour_mut()
                             .kademlia
                             .store_mut()
-                            .get_farthest()?;
+                            .get_farthest();
                         self.replication_fetcher.set_farthest_on_full(farthest);
                     }
                     Err(_) => {
@@ -691,7 +685,7 @@ impl SwarmDriver {
                     .behaviour_mut()
                     .kademlia
                     .store_mut()
-                    .get_farthest_replication_distance()?
+                    .get_responsible_distance_range()
                 {
                     self.replication_fetcher
                         .set_replication_distance_range(distance);
@@ -890,8 +884,7 @@ impl SwarmDriver {
                     .behaviour_mut()
                     .kademlia
                     .store_mut()
-                    .get_farthest_replication_distance()
-                    .unwrap_or_default();
+                    .get_responsible_distance_range();
                 let _ = sender.send(density);
             }
             LocalSwarmCmd::RemovePeer { peer } => {
@@ -1075,7 +1068,7 @@ impl SwarmDriver {
             .behaviour_mut()
             .kademlia
             .store_mut()
-            .record_addresses_ref()?
+            .record_addresses_ref()
             .values()
             .cloned()
             .collect();
@@ -1134,7 +1127,7 @@ impl SwarmDriver {
             .behaviour_mut()
             .kademlia
             .store_mut()
-            .get_farthest_replication_distance()?
+            .get_responsible_distance_range()
         {
             let peers_in_range = get_peers_in_range(&closest_k_peers, target, responsible_range);
 

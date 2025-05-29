@@ -28,7 +28,6 @@ mod metrics;
 mod network_builder;
 mod network_discovery;
 mod record_store;
-mod record_store_api;
 mod relay_manager;
 mod replication_fetcher;
 pub mod time;
@@ -264,7 +263,7 @@ impl Network {
 
         let quoting_metrics = receiver
             .await
-            .map_err(|_e| NetworkError::InternalMsgChannelDropped)??;
+            .map_err(|_e| NetworkError::InternalMsgChannelDropped)?;
         Ok(quoting_metrics)
     }
 
@@ -326,7 +325,7 @@ impl Network {
 
         let is_present = receiver
             .await
-            .map_err(|_e| NetworkError::InternalMsgChannelDropped)??;
+            .map_err(|_e| NetworkError::InternalMsgChannelDropped)?;
 
         Ok(is_present)
     }
@@ -340,7 +339,7 @@ impl Network {
 
         let addrs = receiver
             .await
-            .map_err(|_e| NetworkError::InternalMsgChannelDropped)??;
+            .map_err(|_e| NetworkError::InternalMsgChannelDropped)?;
         Ok(addrs)
     }
 
@@ -730,19 +729,4 @@ pub(crate) fn send_network_swarm_cmd(
             error!("Failed to send SwarmCmd: {}", error);
         }
     });
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[tokio::test]
-    async fn test_network_sign_verify() -> eyre::Result<()> {
-        let (network, _, _) =
-            NetworkBuilder::new(Keypair::generate_ed25519(), false, vec![]).build_client();
-        let msg = b"test message";
-        let sig = network.sign(msg)?;
-        assert!(network.verify(msg, &sig));
-        Ok(())
-    }
 }

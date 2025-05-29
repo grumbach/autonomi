@@ -229,7 +229,7 @@ impl SwarmDriver {
             .behaviour_mut()
             .kademlia
             .store_mut()
-            .record_addresses_ref()?;
+            .record_addresses_ref();
         let keys_to_fetch = self.replication_fetcher.add_keys(
             holder,
             incoming_keys,
