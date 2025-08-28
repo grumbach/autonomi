@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756176276161,
+  "lastUpdate": 1756361267466,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -77,6 +77,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 27.501931919464756,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "89fc3eb63c63781ebf023e810c091a9ad6abc942",
+          "message": "Merge pull request #3172 from maqi/extend_stream_download_coverage\n\nExtend stream download coverage",
+          "timestamp": "2025-08-27T12:18:02Z",
+          "tree_id": "6429e274e06cf83739a96d19c1ef0b9d845a4a4b",
+          "url": "https://github.com/grumbach/autonomi/commit/89fc3eb63c63781ebf023e810c091a9ad6abc942"
+        },
+        "date": 1756361266230,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 2.6759510210949498,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 9.109520730353543,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 27.3224206542699,
             "unit": "MiB/s"
           }
         ]
