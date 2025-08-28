@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756361344899,
+  "lastUpdate": 1756361347056,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -384,6 +384,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "swarm_driver long handling total_time",
             "value": 23126,
+            "unit": "ms"
+          },
+          {
+            "name": "swarm_driver average long handling time",
+            "value": 2,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "89fc3eb63c63781ebf023e810c091a9ad6abc942",
+          "message": "Merge pull request #3172 from maqi/extend_stream_download_coverage\n\nExtend stream download coverage",
+          "timestamp": "2025-08-27T12:18:02Z",
+          "tree_id": "6429e274e06cf83739a96d19c1ef0b9d845a4a4b",
+          "url": "https://github.com/grumbach/autonomi/commit/89fc3eb63c63781ebf023e810c091a9ad6abc942"
+        },
+        "date": 1756361346219,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "swarm_driver long handling times",
+            "value": 11080,
+            "unit": "hits"
+          },
+          {
+            "name": "swarm_driver long handling total_time",
+            "value": 22634,
             "unit": "ms"
           },
           {
