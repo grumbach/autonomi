@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1757052718887,
+  "lastUpdate": 1757052797300,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -380,6 +380,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Peak memory w/ `safe` benchmarks",
             "value": 86,
+            "unit": "MB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c7a9c6b2cfe357b9ce0115336059c3b762f51f2d",
+          "message": "Merge pull request #3180 from maidsafe/dependabot/github_actions/actions/setup-node-5\n\nchore(deps): bump actions/setup-node from 4 to 5",
+          "timestamp": "2025-09-04T16:03:51Z",
+          "tree_id": "6848147e5b5a33ba94236e529ae97ee78eafc728",
+          "url": "https://github.com/grumbach/autonomi/commit/c7a9c6b2cfe357b9ce0115336059c3b762f51f2d"
+        },
+        "date": 1757052796226,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Peak memory w/ `safe` benchmarks",
+            "value": 88,
             "unit": "MB"
           }
         ]
