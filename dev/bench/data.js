@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1757052802070,
+  "lastUpdate": 1757315538016,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -233,6 +233,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 22.172963346979074,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "82e0f25c9abb20bf84eef8b81d46194af5b9d2bc",
+          "message": "Merge pull request #3070 from ermineJose/armv7-storage-size-LP\n\nfeat: change data type from usize to u64 id disk space for nodes",
+          "timestamp": "2025-09-05T09:47:02Z",
+          "tree_id": "bd8f002d606ced62b2fa91c178fb0ce1a4e085e8",
+          "url": "https://github.com/grumbach/autonomi/commit/82e0f25c9abb20bf84eef8b81d46194af5b9d2bc"
+        },
+        "date": 1757315537481,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 2.130238762182503,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 8.600986925465563,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 22.236227290265592,
             "unit": "MiB/s"
           }
         ]
