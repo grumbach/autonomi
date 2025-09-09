@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1757315616245,
+  "lastUpdate": 1757407666703,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -272,6 +272,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 22.236227290265592,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "854c83c5d352a0068ba55264fe2dee2935a9bdc1",
+          "message": "Merge pull request #3193 from maqi/streaming_decryptor_check_dest_path\n\nfix(client): error out if imput dest path can not be used for streaming disk flush",
+          "timestamp": "2025-09-08T14:03:23Z",
+          "tree_id": "b68984716a01e00daed041047945dcda0b13f21b",
+          "url": "https://github.com/grumbach/autonomi/commit/854c83c5d352a0068ba55264fe2dee2935a9bdc1"
+        },
+        "date": 1757407666128,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 2.2796996714807554,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 9.006179298711002,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 22.445225957980885,
             "unit": "MiB/s"
           }
         ]
