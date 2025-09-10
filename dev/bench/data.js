@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1757407744984,
+  "lastUpdate": 1757494309841,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -311,6 +311,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 22.445225957980885,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "anselmega@gmail.com",
+            "name": "Anselme",
+            "username": "grumbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b3065c47905b021416e12b8124da11d55e26e671",
+          "message": "Merge pull request #3196 from grumbach/cleanup_fmt2\n\nchore: cleanup fmt",
+          "timestamp": "2025-09-09T12:21:39Z",
+          "tree_id": "a5da1e8411c3f361b938364010ee1d8d186cf53b",
+          "url": "https://github.com/grumbach/autonomi/commit/b3065c47905b021416e12b8124da11d55e26e671"
+        },
+        "date": 1757494309335,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 2.120796352358285,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 8.84401584809699,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 21.954629078520018,
             "unit": "MiB/s"
           }
         ]
