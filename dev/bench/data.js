@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1757494309841,
+  "lastUpdate": 1757494389692,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -584,6 +584,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Peak memory w/ `safe` benchmarks",
             "value": 88,
+            "unit": "MB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "anselmega@gmail.com",
+            "name": "Anselme",
+            "username": "grumbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b3065c47905b021416e12b8124da11d55e26e671",
+          "message": "Merge pull request #3196 from grumbach/cleanup_fmt2\n\nchore: cleanup fmt",
+          "timestamp": "2025-09-09T12:21:39Z",
+          "tree_id": "a5da1e8411c3f361b938364010ee1d8d186cf53b",
+          "url": "https://github.com/grumbach/autonomi/commit/b3065c47905b021416e12b8124da11d55e26e671"
+        },
+        "date": 1757494389367,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Peak memory w/ `safe` benchmarks",
+            "value": 87,
             "unit": "MB"
           }
         ]
