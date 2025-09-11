@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1757576006311,
+  "lastUpdate": 1757576007941,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -1512,6 +1512,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "swarm_driver long handling total_time",
             "value": 21911,
+            "unit": "ms"
+          },
+          {
+            "name": "swarm_driver average long handling time",
+            "value": 2,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "mickvd99@gmail.com",
+            "name": "Mick van Dijke",
+            "username": "mickvandijke"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9e3af21db96ff5f45275f8c729322b3352fb99e0",
+          "message": "Merge pull request #3199 from mickvandijke/dave\n\nfeat(autonomi): make vault constants and functions public",
+          "timestamp": "2025-09-10T20:08:40Z",
+          "tree_id": "3736bfb108e5181a75d0e9db11103dfb6f84ac45",
+          "url": "https://github.com/grumbach/autonomi/commit/9e3af21db96ff5f45275f8c729322b3352fb99e0"
+        },
+        "date": 1757576007406,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "swarm_driver long handling times",
+            "value": 10632,
+            "unit": "hits"
+          },
+          {
+            "name": "swarm_driver long handling total_time",
+            "value": 22692,
             "unit": "ms"
           },
           {
