@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1757516299327,
+  "lastUpdate": 1757575927425,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -389,6 +389,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 22.418071303531512,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "mickvd99@gmail.com",
+            "name": "Mick van Dijke",
+            "username": "mickvandijke"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9e3af21db96ff5f45275f8c729322b3352fb99e0",
+          "message": "Merge pull request #3199 from mickvandijke/dave\n\nfeat(autonomi): make vault constants and functions public",
+          "timestamp": "2025-09-10T20:08:40Z",
+          "tree_id": "3736bfb108e5181a75d0e9db11103dfb6f84ac45",
+          "url": "https://github.com/grumbach/autonomi/commit/9e3af21db96ff5f45275f8c729322b3352fb99e0"
+        },
+        "date": 1757575926687,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 2.3208735193371335,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 8.688064689838114,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 22.052730129195815,
             "unit": "MiB/s"
           }
         ]
