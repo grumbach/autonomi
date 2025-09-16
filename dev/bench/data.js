@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758022771772,
+  "lastUpdate": 1758022773908,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -1285,6 +1285,40 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/grumbach/autonomi/commit/80608fae96e7d9465de352addb76eb5d0efd10ee"
         },
         "date": 1757939518995,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Peak memory usage w/ upload",
+            "value": 19,
+            "unit": "MB"
+          },
+          {
+            "name": "Average memory usage w/ upload",
+            "value": 15,
+            "unit": "MB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "anselmega@gmail.com",
+            "name": "Anselme",
+            "username": "grumbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "14a0f6018105c8acb75b3b7a22f9c46b0590c44a",
+          "message": "Merge pull request #3202 from grumbach/various_api_cleanup\n\nchore: cleanup api",
+          "timestamp": "2025-09-16T10:37:18Z",
+          "tree_id": "f9930ab71f036fefacf0e9376fffbb7550cba0a2",
+          "url": "https://github.com/grumbach/autonomi/commit/14a0f6018105c8acb75b3b7a22f9c46b0590c44a"
+        },
+        "date": 1758022773039,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
