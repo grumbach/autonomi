@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758022776080,
+  "lastUpdate": 1758714800044,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -506,6 +506,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 22.404513535123534,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5a54c3a841ef7b58bc9546ee36b0859e0d07138f",
+          "message": "Merge pull request #3208 from maqi/using_tokio_spawn_blocking\n\nchore(client): use tokio::spawn_blocking",
+          "timestamp": "2025-09-23T21:22:09Z",
+          "tree_id": "72294d1770fa9ef5263d0460c3d3105252c1071b",
+          "url": "https://github.com/grumbach/autonomi/commit/5a54c3a841ef7b58bc9546ee36b0859e0d07138f"
+        },
+        "date": 1758714798614,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 2.231940388015701,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 9.016088332724996,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 22.259275530973465,
             "unit": "MiB/s"
           }
         ]
