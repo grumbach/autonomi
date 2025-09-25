@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758714882373,
+  "lastUpdate": 1758789191337,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -545,6 +545,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 22.259275530973465,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "anselmega@gmail.com",
+            "name": "grumbach",
+            "username": "grumbach"
+          },
+          "committer": {
+            "email": "anselmega@gmail.com",
+            "name": "grumbach",
+            "username": "grumbach"
+          },
+          "distinct": true,
+          "id": "c63ee11b5fc40858bcfbded271dbfbecd433d0fb",
+          "message": "fix: analyze for old datamap types",
+          "timestamp": "2025-09-25T17:22:15+09:00",
+          "tree_id": "330c124dd0d2bf2342a9094de90d8aaf4e9a6e19",
+          "url": "https://github.com/grumbach/autonomi/commit/c63ee11b5fc40858bcfbded271dbfbecd433d0fb"
+        },
+        "date": 1758789190425,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 2.242837992314456,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 8.508420793056542,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 22.23480936094742,
             "unit": "MiB/s"
           }
         ]
