@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758789191337,
+  "lastUpdate": 1758789270794,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -987,6 +987,35 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/grumbach/autonomi/commit/5a54c3a841ef7b58bc9546ee36b0859e0d07138f"
         },
         "date": 1758714876192,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Peak memory w/ `safe` benchmarks",
+            "value": 87,
+            "unit": "MB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "anselmega@gmail.com",
+            "name": "grumbach",
+            "username": "grumbach"
+          },
+          "committer": {
+            "email": "anselmega@gmail.com",
+            "name": "grumbach",
+            "username": "grumbach"
+          },
+          "distinct": true,
+          "id": "c63ee11b5fc40858bcfbded271dbfbecd433d0fb",
+          "message": "fix: analyze for old datamap types",
+          "timestamp": "2025-09-25T17:22:15+09:00",
+          "tree_id": "330c124dd0d2bf2342a9094de90d8aaf4e9a6e19",
+          "url": "https://github.com/grumbach/autonomi/commit/c63ee11b5fc40858bcfbded271dbfbecd433d0fb"
+        },
+        "date": 1758789270056,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
