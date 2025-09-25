@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758792865042,
+  "lastUpdate": 1758792866759,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -2358,6 +2358,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "swarm_driver long handling total_time",
             "value": 21432,
+            "unit": "ms"
+          },
+          {
+            "name": "swarm_driver average long handling time",
+            "value": 2,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9c36720dc61a8c6d3810b429415b6a4f1bf94d82",
+          "message": "Merge pull request #3206 from maqi/remove_outdated_as_record_key\n\nchore: remove outdated NetworkAddress::as_record_key function",
+          "timestamp": "2025-09-22T12:01:01Z",
+          "tree_id": "c660c8059d15856e8723deb75c7a20bbda20347a",
+          "url": "https://github.com/grumbach/autonomi/commit/9c36720dc61a8c6d3810b429415b6a4f1bf94d82"
+        },
+        "date": 1758792866171,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "swarm_driver long handling times",
+            "value": 10766,
+            "unit": "hits"
+          },
+          {
+            "name": "swarm_driver long handling total_time",
+            "value": 22696,
             "unit": "ms"
           },
           {
