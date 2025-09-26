@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758866509576,
+  "lastUpdate": 1758866512119,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -2499,6 +2499,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "swarm_driver long handling total_time",
             "value": 22696,
+            "unit": "ms"
+          },
+          {
+            "name": "swarm_driver average long handling time",
+            "value": 2,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9219a4ad565c1d97a77ee4ad156b6dc983e96d26",
+          "message": "Merge pull request #3210 from grumbach/fix_analyze_old_datamap\n\nfix: analyze for old datamap types",
+          "timestamp": "2025-09-25T16:30:02Z",
+          "tree_id": "87d78d87abf088d6ea0eaeb2aa43c79b3069528e",
+          "url": "https://github.com/grumbach/autonomi/commit/9219a4ad565c1d97a77ee4ad156b6dc983e96d26"
+        },
+        "date": 1758866510979,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "swarm_driver long handling times",
+            "value": 9680,
+            "unit": "hits"
+          },
+          {
+            "name": "swarm_driver long handling total_time",
+            "value": 19769,
             "unit": "ms"
           },
           {
