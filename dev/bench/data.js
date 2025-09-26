@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758792866759,
+  "lastUpdate": 1758866429537,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -662,6 +662,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 21.91997115715764,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9219a4ad565c1d97a77ee4ad156b6dc983e96d26",
+          "message": "Merge pull request #3210 from grumbach/fix_analyze_old_datamap\n\nfix: analyze for old datamap types",
+          "timestamp": "2025-09-25T16:30:02Z",
+          "tree_id": "87d78d87abf088d6ea0eaeb2aa43c79b3069528e",
+          "url": "https://github.com/grumbach/autonomi/commit/9219a4ad565c1d97a77ee4ad156b6dc983e96d26"
+        },
+        "date": 1758866428192,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 2.2543378226787456,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 8.355593078229067,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 22.19621470883514,
             "unit": "MiB/s"
           }
         ]
