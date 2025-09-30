@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758866512119,
+  "lastUpdate": 1759220934377,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -701,6 +701,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 22.19621470883514,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "chriso83@protonmail.com",
+            "name": "Chris O'Neil",
+            "username": "jacderida"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "937eb522c11f652a5291d84751fbf259c6a255f5",
+          "message": "Merge pull request #3219 from jacderida/chore-revert_3032_2\n\nRevert #3032",
+          "timestamp": "2025-09-29T22:06:31+01:00",
+          "tree_id": "79855ea9dea2e2ca1336307b5f3e5363cb3d96a3",
+          "url": "https://github.com/grumbach/autonomi/commit/937eb522c11f652a5291d84751fbf259c6a255f5"
+        },
+        "date": 1759220932954,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 2.246436445349574,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 8.707700656616941,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 21.974036381254255,
             "unit": "MiB/s"
           }
         ]
