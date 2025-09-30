@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1759221012435,
+  "lastUpdate": 1759221014588,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -1902,6 +1902,40 @@ window.BENCHMARK_DATA = {
           {
             "name": "Peak memory usage w/ upload",
             "value": 21,
+            "unit": "MB"
+          },
+          {
+            "name": "Average memory usage w/ upload",
+            "value": 15,
+            "unit": "MB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "chriso83@protonmail.com",
+            "name": "Chris O'Neil",
+            "username": "jacderida"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "937eb522c11f652a5291d84751fbf259c6a255f5",
+          "message": "Merge pull request #3219 from jacderida/chore-revert_3032_2\n\nRevert #3032",
+          "timestamp": "2025-09-29T22:06:31+01:00",
+          "tree_id": "79855ea9dea2e2ca1336307b5f3e5363cb3d96a3",
+          "url": "https://github.com/grumbach/autonomi/commit/937eb522c11f652a5291d84751fbf259c6a255f5"
+        },
+        "date": 1759221013725,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Peak memory usage w/ upload",
+            "value": 19,
             "unit": "MB"
           },
           {
