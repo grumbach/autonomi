@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1761639232772,
+  "lastUpdate": 1761639235194,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -2009,6 +2009,40 @@ window.BENCHMARK_DATA = {
           {
             "name": "Average memory usage w/ upload",
             "value": 15,
+            "unit": "MB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "57da1110b80777120e6eac7b926a7191fdca55a2",
+          "message": "Merge pull request #3274 from maidsafe/dependabot/github_actions/actions/upload-artifact-5\n\nchore(deps): bump actions/upload-artifact from 4 to 5",
+          "timestamp": "2025-10-27T17:08:32Z",
+          "tree_id": "a886fa23498b8f10ee73f9dd822d2082f8f4c735",
+          "url": "https://github.com/grumbach/autonomi/commit/57da1110b80777120e6eac7b926a7191fdca55a2"
+        },
+        "date": 1761639234170,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Peak memory usage w/ upload",
+            "value": 15,
+            "unit": "MB"
+          },
+          {
+            "name": "Average memory usage w/ upload",
+            "value": 14,
             "unit": "MB"
           }
         ]
