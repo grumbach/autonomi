@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1761697194445,
+  "lastUpdate": 1761697196954,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -2922,6 +2922,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "swarm_driver long handling total_time",
             "value": 19436,
+            "unit": "ms"
+          },
+          {
+            "name": "swarm_driver average long handling time",
+            "value": 1,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f3c9a24ad3b3ea696e976946dfaaeb141a1be09f",
+          "message": "Merge pull request #3275 from RolandSherwin/3273_with_extended_close_group\n\nchecking close group record holding status",
+          "timestamp": "2025-10-28T17:53:35Z",
+          "tree_id": "d298214d0bd90c7851506ab94f965421d242445d",
+          "url": "https://github.com/grumbach/autonomi/commit/f3c9a24ad3b3ea696e976946dfaaeb141a1be09f"
+        },
+        "date": 1761697195862,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "swarm_driver long handling times",
+            "value": 10299,
+            "unit": "hits"
+          },
+          {
+            "name": "swarm_driver long handling total_time",
+            "value": 18496,
             "unit": "ms"
           },
           {
