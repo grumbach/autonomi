@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1761639237560,
+  "lastUpdate": 1761697112263,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -779,6 +779,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 7.022395548811091,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f3c9a24ad3b3ea696e976946dfaaeb141a1be09f",
+          "message": "Merge pull request #3275 from RolandSherwin/3273_with_extended_close_group\n\nchecking close group record holding status",
+          "timestamp": "2025-10-28T17:53:35Z",
+          "tree_id": "d298214d0bd90c7851506ab94f965421d242445d",
+          "url": "https://github.com/grumbach/autonomi/commit/f3c9a24ad3b3ea696e976946dfaaeb141a1be09f"
+        },
+        "date": 1761697110871,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 1.0786662205781388,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 6.274313059376575,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 7.050103637040508,
             "unit": "MiB/s"
           }
         ]
