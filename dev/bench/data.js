@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1761697196954,
+  "lastUpdate": 1761802547353,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -818,6 +818,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 7.050103637040508,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9f5582b69c9434884a3fa52b452b9a8481c9dd82",
+          "message": "Merge pull request #3278 from RolandSherwin/analyze_recursive\n\nfeat(ant): recursively analyze addresses",
+          "timestamp": "2025-10-29T17:06:35Z",
+          "tree_id": "8525e273b16aad7a19e44292db09e804d1f30a08",
+          "url": "https://github.com/grumbach/autonomi/commit/9f5582b69c9434884a3fa52b452b9a8481c9dd82"
+        },
+        "date": 1761802546137,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 1.1160273190240453,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 6.435093623899459,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 7.008009886579429,
             "unit": "MiB/s"
           }
         ]
