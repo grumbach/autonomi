@@ -378,6 +378,13 @@ impl Node {
                 }
                 res
             }
+            // Merkle payment records - TODO: implement full verification
+            RecordKind::DataWithMerklePayment(_data_type) => {
+                error!("Merkle payment validation not yet implemented");
+                Err(PutValidationError::MerklePaymentNotYetImplemented(
+                    PrettyPrintRecordKey::from(&record.key).into_owned(),
+                ))
+            }
         }
     }
 
@@ -396,6 +403,13 @@ impl Node {
             // A separate flow handles record with payment
             RecordKind::DataWithPayment(_) => {
                 warn!("Prepaid record came with Payment, which should be handled in another flow");
+                Err(PutValidationError::UnexpectedRecordWithPayment(
+                    PrettyPrintRecordKey::from(&record.key).into_owned(),
+                ))
+            }
+            // Merkle payment records should not be replicated with payment proof
+            RecordKind::DataWithMerklePayment(_) => {
+                warn!("Record came with Merkle Payment, which should be handled in another flow");
                 Err(PutValidationError::UnexpectedRecordWithPayment(
                     PrettyPrintRecordKey::from(&record.key).into_owned(),
                 ))

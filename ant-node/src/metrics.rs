@@ -235,6 +235,7 @@ enum PutRecordErrorType {
     LocalSwarmError,
     InvalidRecordHeader,
     InvalidRecord,
+    MerklePaymentNotYetImplemented,
 }
 
 impl From<&crate::PutValidationError> for PutRecordErrorType {
@@ -269,6 +270,9 @@ impl From<&crate::PutValidationError> for PutRecordErrorType {
             crate::PutValidationError::LocalSwarmError => Self::LocalSwarmError,
             crate::PutValidationError::InvalidRecordHeader => Self::InvalidRecordHeader,
             crate::PutValidationError::InvalidRecord(_) => Self::InvalidRecord,
+            crate::PutValidationError::MerklePaymentNotYetImplemented(_) => {
+                Self::MerklePaymentNotYetImplemented
+            }
         }
     }
 }

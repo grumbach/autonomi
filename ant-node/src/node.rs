@@ -745,6 +745,62 @@ impl Node {
                     record_addr: address,
                 }
             }
+            Query::GetMerkleCandidateQuote {
+                key,
+                merkle_payment_timestamp,
+            } => {
+                debug!(
+                    "Got GetMerkleCandidateQuote for target {key:?} with timestamp {merkle_payment_timestamp}"
+                );
+
+                // Get node's current quoting metrics
+                // We use a dummy data_type (0) and data_size (0) since Merkle quotes
+                // are about node state, not specific data being stored
+                let record_key = key.to_record_key();
+                let maybe_quoting_metrics = network
+                    .get_local_quoting_metrics(record_key, 0, 0)
+                    .await;
+
+                match maybe_quoting_metrics {
+                    Ok((quoting_metrics, _is_already_stored)) => {
+                        // Create the MerklePaymentCandidateNode with node's signed commitment
+                        let pub_key = network.get_pub_key();
+                        let reward_address = payment_address;
+
+                        // Create bytes to sign: combines metrics + reward address + timestamp
+                        let bytes = ant_evm::merkle_payments::MerklePaymentCandidateNode::bytes_to_sign(
+                            &quoting_metrics,
+                            &reward_address,
+                            merkle_payment_timestamp,
+                        );
+
+                        match network.sign(&bytes) {
+                            Ok(signature) => {
+                                let candidate = ant_evm::merkle_payments::MerklePaymentCandidateNode {
+                                    quoting_metrics,
+                                    reward_address,
+                                    merkle_payment_timestamp,
+                                    pub_key,
+                                    signature,
+                                };
+                                QueryResponse::GetMerkleCandidateQuote(Ok(candidate))
+                            }
+                            Err(_) => {
+                                error!("Failed to sign Merkle candidate node for {key:?}");
+                                QueryResponse::GetMerkleCandidateQuote(Err(
+                                    ProtocolError::FailedToSignMerkleCandidate,
+                                ))
+                            }
+                        }
+                    }
+                    Err(err) => {
+                        warn!("GetMerkleCandidateQuote failed for {key:?}: {err}");
+                        QueryResponse::GetMerkleCandidateQuote(Err(
+                            ProtocolError::GetMerkleCandidateQuoteFailed,
+                        ))
+                    }
+                }
+            }
         };
         Response::Query(resp)
     }

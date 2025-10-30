@@ -82,6 +82,10 @@ pub enum PutValidationError {
     // ---------- Pointer errors
     #[error("Pointer signature is invalid")]
     InvalidPointerSignature,
+
+    // ---------- Merkle payment errors
+    #[error("Merkle payment validation not yet implemented for record: {0:?}")]
+    MerklePaymentNotYetImplemented(PrettyPrintRecordKey<'static>),
 }
 
 /// Internal node error.
