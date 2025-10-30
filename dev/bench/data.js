@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1761802627930,
+  "lastUpdate": 1761802629985,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -2203,6 +2203,40 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/grumbach/autonomi/commit/f3c9a24ad3b3ea696e976946dfaaeb141a1be09f"
         },
         "date": 1761697193363,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Peak memory usage w/ upload",
+            "value": 15,
+            "unit": "MB"
+          },
+          {
+            "name": "Average memory usage w/ upload",
+            "value": 14,
+            "unit": "MB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9f5582b69c9434884a3fa52b452b9a8481c9dd82",
+          "message": "Merge pull request #3278 from RolandSherwin/analyze_recursive\n\nfeat(ant): recursively analyze addresses",
+          "timestamp": "2025-10-29T17:06:35Z",
+          "tree_id": "8525e273b16aad7a19e44292db09e804d1f30a08",
+          "url": "https://github.com/grumbach/autonomi/commit/9f5582b69c9434884a3fa52b452b9a8481c9dd82"
+        },
+        "date": 1761802629163,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
