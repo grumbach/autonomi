@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1762503582622,
+  "lastUpdate": 1762503583880,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -2305,6 +2305,40 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/grumbach/autonomi/commit/9f5582b69c9434884a3fa52b452b9a8481c9dd82"
         },
         "date": 1761802629163,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Peak memory usage w/ upload",
+            "value": 15,
+            "unit": "MB"
+          },
+          {
+            "name": "Average memory usage w/ upload",
+            "value": 14,
+            "unit": "MB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "chriso83@protonmail.com",
+            "name": "Chris O'Neil",
+            "username": "jacderida"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ebf1b1073befc8277f7859d77ad502edff4d5907",
+          "message": "Merge pull request #3291 from maidsafe/fix-ant_bootstrap_version\n\nchore: bump `ant-bootstrap` version",
+          "timestamp": "2025-11-06T22:58:04Z",
+          "tree_id": "f6538ba04994ef1407f3a4fda4d7a3b1dd5ac8ad",
+          "url": "https://github.com/grumbach/autonomi/commit/ebf1b1073befc8277f7859d77ad502edff4d5907"
+        },
+        "date": 1762503583550,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
