@@ -61,6 +61,7 @@ impl Client {
         let start_upload = |chunk: ant_protocol::storage::Chunk| -> Result<_, MerklePutError> {
             let xor_name = *chunk.name();
             let proof = receipt
+                .proofs
                 .get(&xor_name)
                 .ok_or(MerklePutError::MissingPaymentProofFor(xor_name))?
                 .clone();

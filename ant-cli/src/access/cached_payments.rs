@@ -6,16 +6,15 @@
 // KIND, either express or implied. Please review the Licences for the specific language governing
 // permissions and limitations relating to use of the SAFE Network Software.
 
-use autonomi::client::{ChunkBatchUploadState, payment::Receipt};
+use autonomi::client::merkle_payments::MerklePaymentReceipt;
 use color_eyre::eyre::{Context, Result};
-use std::collections::HashMap;
 use std::fs::{DirEntry, File};
 use std::io::{BufReader, BufWriter};
 use std::path::PathBuf;
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 
-// Cleanup old cached payments after 30 days
-const PAYMENT_EXPIRATION_SECS: u64 = 3600 * 24 * 30;
+// Cleanup old cached Merkle payment receipts after 1 week
+const PAYMENT_EXPIRATION_SECS: u64 = 3600 * 24 * 7;
 
 pub fn get_payments_dir() -> Result<PathBuf> {
     let dir = super::data_dir::get_client_data_dir_path()?;
@@ -25,25 +24,27 @@ pub fn get_payments_dir() -> Result<PathBuf> {
     Ok(payments_dir)
 }
 
-/// Save the payment for the given file name to be reused later.
-pub fn save_payment(file: &str, upload_state: &ChunkBatchUploadState) -> Result<()> {
+/// Save the Merkle payment receipt for the given file name to be reused later.
+pub fn save_merkle_payment(file: &str, receipt: &MerklePaymentReceipt) -> Result<()> {
     let dir = get_payments_dir()?;
-    let timestamp =
-        get_timestamp_from_receipt(upload_state.payment.as_ref().unwrap_or(&HashMap::new()));
+    let timestamp = get_timestamp_from_merkle_receipt(receipt);
     let file_hash = filename_short(file);
     let file_path = dir.join(format!("{timestamp}_{file_hash}"));
 
-    let file = File::create(&file_path)?;
-    let writer = BufWriter::new(&file);
-    serde_json::to_writer(writer, &upload_state)?;
+    let file_handle = File::create(&file_path)?;
+    let writer = BufWriter::new(&file_handle);
+    serde_json::to_writer(writer, &receipt)?;
 
-    println!("Cached payment for {file:?} to {}", file_path.display());
+    println!(
+        "Cached Merkle payment for {file:?} to {}",
+        file_path.display()
+    );
     Ok(())
 }
 
-/// Load the payment for the given file name.
+/// Load the Merkle payment receipt for the given file name.
 /// Returns None if no payment is found.
-pub fn load_payment_for_file(file_name: &str) -> Result<Option<Receipt>> {
+pub fn load_merkle_payment_for_file(file_name: &str) -> Result<Option<MerklePaymentReceipt>> {
     cleanup_outdated_payments()?;
 
     let dir = get_payments_dir()?;
@@ -52,10 +53,10 @@ pub fn load_payment_for_file(file_name: &str) -> Result<Option<Receipt>> {
     let files = std::fs::read_dir(dir)?;
     for file in files {
         if let Some(path) = matches_filename(file.ok(), &file_hash) {
-            let file = File::open(path)?;
-            let reader = BufReader::new(file);
-            let receipt: Receipt = serde_json::from_reader(reader)?;
-            println!("Found cached payment for {file_name}");
+            let file_handle = File::open(path)?;
+            let reader = BufReader::new(file_handle);
+            let receipt: MerklePaymentReceipt = serde_json::from_reader(reader)?;
+            println!("Found cached Merkle payment for {file_name}");
             return Ok(Some(receipt));
         }
     }
@@ -69,7 +70,9 @@ fn cleanup_outdated_payments() -> Result<()> {
     let files = std::fs::read_dir(dir)?;
     let expired_files = files.into_iter().filter_map(|file| {
         let path = file.ok()?.path();
-        if is_expired_file(path.to_str()?) {
+        // Extract just the filename (basename) to pass to is_expired_file
+        let file_name = path.file_name()?.to_str()?;
+        if is_expired_file(file_name) {
             Some(path)
         } else {
             None
@@ -123,17 +126,12 @@ fn now() -> String {
     timestamp.to_string()
 }
 
-fn get_timestamp_from_receipt(receipt: &Receipt) -> String {
-    if let Some((proof, _)) = receipt.values().next()
-        && let Some(timestamp) = proof
-            .peer_quotes
-            .first()
-            .map(|(_, _, quote)| quote.timestamp)
-    {
-        return timestamp
-            .duration_since(UNIX_EPOCH)
-            .unwrap_or_default()
-            .as_secs()
+fn get_timestamp_from_merkle_receipt(receipt: &MerklePaymentReceipt) -> String {
+    if let Some(proof) = receipt.proofs.values().next() {
+        return proof
+            .winner_pool
+            .midpoint_proof
+            .merkle_payment_timestamp
             .to_string();
     }
 
@@ -168,5 +166,97 @@ mod tests {
         assert!(is_expired_file(&format!("{just_expired_1}_{file_hash}")));
         assert!(!is_expired_file(&format!("{not_expired}_{file_hash}")));
         assert!(!is_expired_file(&format!("{not_expired_1}_{file_hash}")));
+    }
+
+    #[test]
+    fn test_cleanup_with_full_paths() -> Result<()> {
+        use std::fs::File;
+        use tempfile::TempDir;
+
+        // Create a temporary directory for testing
+        let temp_dir = TempDir::new()?;
+        let temp_path = temp_dir.path();
+
+        // Create test files with different timestamps
+        let file_hash = filename_short("test");
+
+        // Create an expired file (8 days old)
+        let expired_timestamp = (SystemTime::now()
+            - Duration::from_secs(PAYMENT_EXPIRATION_SECS + 86400))
+        .duration_since(UNIX_EPOCH)
+        .unwrap_or_default()
+        .as_secs();
+        let expired_filename = format!("{expired_timestamp}_{file_hash}");
+        let expired_path = temp_path.join(&expired_filename);
+        File::create(&expired_path)?;
+
+        // Create a non-expired file (1 day old)
+        let fresh_timestamp = (SystemTime::now() - Duration::from_secs(86400))
+            .duration_since(UNIX_EPOCH)
+            .unwrap_or_default()
+            .as_secs();
+        let fresh_filename = format!("{fresh_timestamp}_{file_hash}");
+        let fresh_path = temp_path.join(&fresh_filename);
+        File::create(&fresh_path)?;
+
+        // Verify both files exist before cleanup
+        assert!(
+            expired_path.exists(),
+            "Expired file should exist before cleanup"
+        );
+        assert!(
+            fresh_path.exists(),
+            "Fresh file should exist before cleanup"
+        );
+
+        // Simulate cleanup logic by filtering files
+        let files = std::fs::read_dir(temp_path)?;
+        let expired_files: Vec<PathBuf> = files
+            .into_iter()
+            .filter_map(|file| {
+                let path = file.ok()?.path();
+                // This is the critical fix: extract basename before calling is_expired_file
+                let file_name = path.file_name()?.to_str()?;
+                if is_expired_file(file_name) {
+                    Some(path)
+                } else {
+                    None
+                }
+            })
+            .collect();
+
+        // Should find exactly one expired file
+        assert_eq!(
+            expired_files.len(),
+            1,
+            "Should find exactly one expired file"
+        );
+        assert_eq!(
+            expired_files.first().expect("Should have one expired file"),
+            &expired_path,
+            "Should identify the correct expired file"
+        );
+
+        // Verify is_expired_file works correctly with basename
+        assert!(
+            is_expired_file(&expired_filename),
+            "Expired filename should be marked as expired"
+        );
+        assert!(
+            !is_expired_file(&fresh_filename),
+            "Fresh filename should not be marked as expired"
+        );
+
+        // Critical test: verify is_expired_file fails correctly with full path
+        // (This would cause the bug where all files are marked as expired)
+        let full_path_str = expired_path.to_str().unwrap();
+        // With the full path, parsing fails and defaults to 0, making everything "expired"
+        // This is the bug we fixed by extracting basename first
+        assert!(
+            is_expired_file(full_path_str),
+            "Full path causes incorrect expiration check (this is the bug we fixed)"
+        );
+
+        Ok(())
     }
 }

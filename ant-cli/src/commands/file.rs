@@ -12,34 +12,22 @@ use crate::args::max_fee_per_gas::{MaxFeePerGasParam, get_max_fee_per_gas_from_o
 use crate::exit_code::{ExitCodeError, FEES_ERROR, IO_ERROR, upload_exit_code};
 use crate::utils::collect_upload_summary;
 use crate::wallet::load_wallet;
-use autonomi::client::PutError;
 use autonomi::client::analyze::Analysis;
+use autonomi::client::merkle_payments::{MerkleFilePutError, MerklePaymentOption};
 use autonomi::client::payment::PaymentOption;
 use autonomi::files::UploadError;
 use autonomi::networking::{Quorum, RetryStrategy};
-use autonomi::{Client, ClientOperatingStrategy, PaymentMode, TransactionConfig};
+use autonomi::{Client, ClientOperatingStrategy, TransactionConfig};
 use color_eyre::Section;
 use color_eyre::eyre::{Context, Result, eyre};
 use std::path::PathBuf;
 
 const MAX_ADDRESSES_TO_PRINT: usize = 3;
 
-pub async fn cost(
-    file: &str,
-    network_context: NetworkContext,
-    use_standard_payment: bool,
-) -> Result<()> {
-    let mut client = crate::actions::connect_to_network(network_context)
+pub async fn cost(file: &str, network_context: NetworkContext) -> Result<()> {
+    let client = crate::actions::connect_to_network(network_context)
         .await
         .map_err(|(err, _)| err)?;
-
-    // Configure payment mode - default is SingleNode, only override if Standard is requested
-    if use_standard_payment {
-        client = client.with_payment_mode(PaymentMode::Standard);
-        println!("💳 Using standard payment mode (pays 3 nodes individually)");
-    } else {
-        println!("🎯 Using single node payment mode (default - saves gas fees)");
-    }
 
     println!("Getting upload cost...");
     info!("Calculating cost for file: {file}");
@@ -61,7 +49,6 @@ pub async fn upload(
     network_context: NetworkContext,
     max_fee_per_gas_param: Option<MaxFeePerGasParam>,
     retry_failed: u64,
-    use_standard_payment: bool,
 ) -> Result<(), ExitCodeError> {
     let config = ClientOperatingStrategy::new();
 
@@ -70,18 +57,10 @@ pub async fn upload(
 
     // Configure client with retry_failed setting
     if retry_failed != 0 {
-        client = client.with_retry_failed(retry_failed);
         println!(
             "🔄 Retry mode enabled - will retry failed chunks until successful or exceeds the limit."
         );
-    }
-
-    // Configure payment mode - default is SingleNode, only override if Standard is requested
-    if use_standard_payment {
-        client = client.with_payment_mode(PaymentMode::Standard);
-        println!("💳 Using standard payment mode (pays 3 nodes individually)");
-    } else {
-        println!("🎯 Using single node payment mode (default - saves gas fees)");
+        client = client.with_retry_failed(retry_failed);
     }
 
     let mut wallet = load_wallet(client.evm_network()).map_err(|err| (err, IO_ERROR))?;
@@ -91,12 +70,7 @@ pub async fn upload(
             .map_err(|err| (err, FEES_ERROR))?;
     wallet.set_transaction_config(TransactionConfig { max_fee_per_gas });
 
-    let payment = if let Ok(Some(receipt)) = cached_payments::load_payment_for_file(file) {
-        println!("Using cached payment: no need to re-pay");
-        PaymentOption::Receipt(receipt)
-    } else {
-        PaymentOption::Wallet(wallet)
-    };
+    println!("🌳 Using Merkle batch payment");
 
     let event_receiver = client.enable_client_events();
     let (upload_summary_thread, upload_completed_tx) = collect_upload_summary(event_receiver);
@@ -116,19 +90,8 @@ pub async fn upload(
     // upload dir
     let not_single_file = !dir_path.is_file();
     let (archive_addr, local_addr) =
-        match upload_dir(&client, dir_path, public, no_archive, payment).await {
+        match upload_dir(&client, &wallet, dir_path.clone(), public, no_archive).await {
             Ok((a, l)) => (a, l),
-            Err(UploadError::PutError(PutError::Batch(upload_state))) => {
-                let res = cached_payments::save_payment(file, &upload_state);
-                println!("Cached payment to local disk for {file}: {res:?}");
-                let exit_code =
-                    upload_exit_code(&UploadError::PutError(PutError::Batch(Default::default())));
-                return Err((
-                    eyre!(UploadError::PutError(PutError::Batch(upload_state)))
-                        .wrap_err("Failed to upload file".to_string()),
-                    exit_code,
-                ));
-            }
             Err(err) => {
                 let exit_code = upload_exit_code(&err);
                 return Err((
@@ -208,28 +171,67 @@ pub async fn upload(
     Ok(())
 }
 
-/// Uploads a file or directory to the network and prints the content and addresses.
+/// Uploads a file or directory to the network using Merkle batch payment.
 /// Single files are uploaded without an archive, directories are uploaded with an archive.
 /// The no_archive argument can be used to skip the archive upload.
 /// Returns the archive address if any and the address to access the data.
 async fn upload_dir(
     client: &Client,
+    wallet: &autonomi::Wallet,
     dir_path: PathBuf,
     public: bool,
     no_archive: bool,
-    payment_option: PaymentOption,
 ) -> Result<(String, String), UploadError> {
+    use autonomi::client::data::DataAddress;
+    use autonomi::client::files::{PrivateArchive, PublicArchive};
+
     let is_single_file = dir_path.is_file();
 
-    if public {
-        let (_, public_archive) = client
-            .dir_content_upload_public(dir_path, payment_option.clone())
-            .await?;
+    // Try to load cached receipt, otherwise use wallet
+    let path_str = dir_path.to_string_lossy().to_string();
+    let payment_option =
+        match cached_payments::load_merkle_payment_for_file(&path_str).map_err(|e| {
+            UploadError::PutError(autonomi::client::PutError::Serialization(format!(
+                "Failed to load cached payment: {e}"
+            )))
+        })? {
+            Some(receipt) => {
+                println!("Using cached Merkle payment for {path_str}");
+                MerklePaymentOption::Receipt(receipt)
+            }
+            None => MerklePaymentOption::Wallet(wallet),
+        };
 
+    // Upload files with Merkle payment
+    let results = client
+        .files_put_with_merkle_payment(dir_path.clone(), public, payment_option)
+        .await
+        .map_err(|e| {
+            // If upload failed but payment succeeded, save the receipt for retry
+            if let MerkleFilePutError::Upload { ref receipt, .. } = e {
+                let path_str = dir_path.to_string_lossy().to_string();
+                let res = cached_payments::save_merkle_payment(&path_str, receipt);
+                println!("Cached Merkle payment to local disk for {path_str}: {res:?}");
+            }
+            UploadError::PutError(autonomi::client::PutError::Serialization(format!(
+                "Merkle payment error: {e}"
+            )))
+        })?;
+
+    // Create payment option for archive uploads
+    let payment_option = PaymentOption::Wallet(wallet.clone());
+
+    if public {
+        // Build PublicArchive from results
+        let mut public_archive = PublicArchive::new();
         let mut addrs = vec![];
-        for (file_path, addr, _meta) in public_archive.iter() {
-            println!("  - {file_path:?}: {:?}", addr.to_hex());
-            addrs.push(addr.to_hex());
+
+        for (relative_path, datamap, metadata) in results {
+            // Convert DataMapChunk to DataAddress
+            let data_address = DataAddress::new(*datamap.0.name());
+            println!("  - {relative_path:?}: {:?}", data_address.to_hex());
+            addrs.push(data_address.to_hex());
+            public_archive.add_file(relative_path, data_address, metadata);
         }
 
         if no_archive || is_single_file {
@@ -240,19 +242,19 @@ async fn upload_dir(
             }
         } else {
             let (_, addr) = client
-                .archive_put_public(&public_archive, payment_option.clone())
+                .archive_put_public(&public_archive, payment_option)
                 .await?;
             Ok((addr.to_hex(), addr.to_hex()))
         }
     } else {
-        let (_, private_archive) = client
-            .dir_content_upload(dir_path, payment_option.clone())
-            .await?;
-
+        // Build PrivateArchive from results
+        let mut private_archive = PrivateArchive::new();
         let mut addrs = vec![];
-        for (file_path, private_datamap, _meta) in private_archive.iter() {
-            println!("  - {file_path:?}: {:?}", private_datamap.to_hex());
-            addrs.push(private_datamap.to_hex());
+
+        for (relative_path, datamap, metadata) in results {
+            println!("  - {relative_path:?}: {:?}", datamap.to_hex());
+            addrs.push(datamap.to_hex());
+            private_archive.add_file(relative_path, datamap, metadata);
         }
 
         if no_archive || is_single_file {
@@ -263,16 +265,13 @@ async fn upload_dir(
                 if let Some((_, private_datamap, _)) = private_archive.iter().next() {
                     Ok((private_datamap.to_hex(), private_datamap.address()))
                 } else {
-                    // This should not happen given the conditions, but handle gracefully
                     Ok(("no-archive".to_string(), addrs.join(", ")))
                 }
             } else {
                 Ok(("no-archive".to_string(), addrs.join(", ")))
             }
         } else {
-            let (_, private_datamap) = client
-                .archive_put(&private_archive, payment_option.clone())
-                .await?;
+            let (_, private_datamap) = client.archive_put(&private_archive, payment_option).await?;
             Ok((private_datamap.to_hex(), private_datamap.address()))
         }
     }
