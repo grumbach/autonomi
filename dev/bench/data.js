@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1764923572961,
+  "lastUpdate": 1764923661650,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -1604,6 +1604,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Peak memory w/ `safe` benchmarks",
             "value": 181,
+            "unit": "MB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "974f55eac51043bba1dbc194eef0c2118780c6bd",
+          "message": "Merge pull request #3319 from maqi/client_check_close_group_among_targeted_group\n\nfeat(client): check target's close group from targeted nodes' perspective",
+          "timestamp": "2025-12-04T13:44:35Z",
+          "tree_id": "898a4432fb6f2c8fd2ddabb83de55677a49ae1c9",
+          "url": "https://github.com/grumbach/autonomi/commit/974f55eac51043bba1dbc194eef0c2118780c6bd"
+        },
+        "date": 1764923661195,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Peak memory w/ `safe` benchmarks",
+            "value": 196,
             "unit": "MB"
           }
         ]
