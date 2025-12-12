@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1765527294488,
+  "lastUpdate": 1765527295768,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -2509,6 +2509,40 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/grumbach/autonomi/commit/974f55eac51043bba1dbc194eef0c2118780c6bd"
         },
         "date": 1764923662697,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Peak memory usage w/ upload",
+            "value": 15,
+            "unit": "MB"
+          },
+          {
+            "name": "Average memory usage w/ upload",
+            "value": 14,
+            "unit": "MB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "chriso83@protonmail.com",
+            "name": "Chris O'Neil",
+            "username": "jacderida"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c15af5a0ed3e0923beea90fe4d77e23f9c10ea54",
+          "message": "Merge pull request #3357 from maidsafe/rc-2025.12.1\n\nchore(release): stable release 2025.12.1.1",
+          "timestamp": "2025-12-11T22:21:12Z",
+          "tree_id": "14072c198c646ce0b91ed4ba42b9cc8212775029",
+          "url": "https://github.com/grumbach/autonomi/commit/c15af5a0ed3e0923beea90fe4d77e23f9c10ea54"
+        },
+        "date": 1765527295432,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
