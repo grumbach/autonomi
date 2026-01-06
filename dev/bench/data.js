@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1765527297084,
+  "lastUpdate": 1767715198591,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -974,6 +974,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 6.633547381395821,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2822430d8c752a7684fb2700745917d38b7f9563",
+          "message": "Merge pull request #3391 from maqi/remove_peer_when_failed_to_fetch_version\n\nfeat(node): remove peer when failed to fetch version",
+          "timestamp": "2026-01-05T13:01:01Z",
+          "tree_id": "e1cde438f620b4e84a9ae6d489caf433002d3270",
+          "url": "https://github.com/grumbach/autonomi/commit/2822430d8c752a7684fb2700745917d38b7f9563"
+        },
+        "date": 1767715197792,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 1.025893210499591,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 5.646426269035342,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 6.664426179488975,
             "unit": "MiB/s"
           }
         ]
