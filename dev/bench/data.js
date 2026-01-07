@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1767807765080,
+  "lastUpdate": 1767807766233,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -3768,6 +3768,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "swarm_driver long handling total_time",
             "value": 20404,
+            "unit": "ms"
+          },
+          {
+            "name": "swarm_driver average long handling time",
+            "value": 1,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1a4f46658ee2ec941e21d68baa6a90fe6e4318c4",
+          "message": "Merge pull request #3376 from mickvandijke/feat-analytical-tools\n\nfeat: add developer query `closest-peers`",
+          "timestamp": "2026-01-07T13:10:23Z",
+          "tree_id": "a378e2fe33a70f13be8d887cc3d47c7a4f950e9b",
+          "url": "https://github.com/grumbach/autonomi/commit/1a4f46658ee2ec941e21d68baa6a90fe6e4318c4"
+        },
+        "date": 1767807765944,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "swarm_driver long handling times",
+            "value": 9502,
+            "unit": "hits"
+          },
+          {
+            "name": "swarm_driver long handling total_time",
+            "value": 18054,
             "unit": "ms"
           },
           {
