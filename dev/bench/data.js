@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1767807766233,
+  "lastUpdate": 1767876941157,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -1052,6 +1052,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 6.6759418323899276,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "mickvd99@gmail.com",
+            "name": "Mick van Dijke",
+            "username": "mickvandijke"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4925c254aebed4faf2aa725b348300ef89fb59e7",
+          "message": "Merge pull request #3385 from mickvandijke/feat-analytical-tools-node-version\n\nfeat(ant): add `developer node-version` command",
+          "timestamp": "2026-01-07T17:42:06Z",
+          "tree_id": "10f77f924ea2b2fd379d770aeaedb779105999a9",
+          "url": "https://github.com/grumbach/autonomi/commit/4925c254aebed4faf2aa725b348300ef89fb59e7"
+        },
+        "date": 1767876940560,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 1.0952100895557042,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 5.812261433805954,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 7.01751242681271,
             "unit": "MiB/s"
           }
         ]
