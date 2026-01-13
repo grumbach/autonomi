@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1767877035975,
+  "lastUpdate": 1768277503333,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -1091,6 +1091,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 7.01751242681271,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f838f350de18aee0a25379457f4e4fb17b5e7999",
+          "message": "Merge pull request #3403 from maqi/disk_space_cleanup_during_test\n\nci(fix): add disk space cleanup for Ubuntu CI runners",
+          "timestamp": "2026-01-12T22:52:10Z",
+          "tree_id": "355cbaa555747b09035f1b7143a495764db75772",
+          "url": "https://github.com/grumbach/autonomi/commit/f838f350de18aee0a25379457f4e4fb17b5e7999"
+        },
+        "date": 1768277502436,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 1.0859070332539877,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 5.625044296678911,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 7.025529170999561,
             "unit": "MiB/s"
           }
         ]
