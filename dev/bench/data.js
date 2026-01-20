@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1768876020747,
+  "lastUpdate": 1768876114134,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -2080,6 +2080,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Peak memory w/ `safe` benchmarks",
             "value": 229,
+            "unit": "MB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2255e28d8d14d011b6c20beb740d349ec73b29a0",
+          "message": "Merge pull request #3410 from mickvandijke/fix-node-req-res-timeout\n\nrefactor(ant-node): increase request timeout to 120 seconds",
+          "timestamp": "2026-01-19T17:00:21Z",
+          "tree_id": "5c164e21926eeb23e3246a48163f8386051e6196",
+          "url": "https://github.com/grumbach/autonomi/commit/2255e28d8d14d011b6c20beb740d349ec73b29a0"
+        },
+        "date": 1768876113577,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Peak memory w/ `safe` benchmarks",
+            "value": 217,
             "unit": "MB"
           }
         ]
