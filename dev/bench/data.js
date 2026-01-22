@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1768876117497,
+  "lastUpdate": 1769056608642,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -1208,6 +1208,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 7.021741122145383,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "64725c2d850322db3ce1fcf62b175579addb92ed",
+          "message": "Merge pull request #3416 from maqi/ant_cli_readme_updates\n\ndocs: add missing CLI options to ant-cli README",
+          "timestamp": "2026-01-21T16:17:03Z",
+          "tree_id": "eab44272ddce6b0990f21e7133126767ba054b62",
+          "url": "https://github.com/grumbach/autonomi/commit/64725c2d850322db3ce1fcf62b175579addb92ed"
+        },
+        "date": 1769056608126,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 0.9759448515706615,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 5.984851693819414,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 6.7074872305629505,
             "unit": "MiB/s"
           }
         ]
