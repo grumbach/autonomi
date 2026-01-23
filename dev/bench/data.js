@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1769147721590,
+  "lastUpdate": 1769147723943,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -4614,6 +4614,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "swarm_driver long handling total_time",
             "value": 17533,
+            "unit": "ms"
+          },
+          {
+            "name": "swarm_driver average long handling time",
+            "value": 1,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "anselmega@gmail.com",
+            "name": "Anselme",
+            "username": "grumbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": false,
+          "id": "9b89a372630c9fbab45d0e9c95521e61063b02d8",
+          "message": "Merge pull request #3419 from grumbach/gas_info\n\nfeat: print information about gas costs",
+          "timestamp": "2026-01-23T03:12:54Z",
+          "tree_id": "9323149e835a1ee8886c8ef04ac752a448264396",
+          "url": "https://github.com/grumbach/autonomi/commit/9b89a372630c9fbab45d0e9c95521e61063b02d8"
+        },
+        "date": 1769147722916,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "swarm_driver long handling times",
+            "value": 10948,
+            "unit": "hits"
+          },
+          {
+            "name": "swarm_driver long handling total_time",
+            "value": 21670,
             "unit": "ms"
           },
           {
