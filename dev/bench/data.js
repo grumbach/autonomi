@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1769147719119,
+  "lastUpdate": 1769147721590,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -3325,6 +3325,40 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/grumbach/autonomi/commit/64725c2d850322db3ce1fcf62b175579addb92ed"
         },
         "date": 1769056702600,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Peak memory usage w/ upload",
+            "value": 15,
+            "unit": "MB"
+          },
+          {
+            "name": "Average memory usage w/ upload",
+            "value": 14,
+            "unit": "MB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "anselmega@gmail.com",
+            "name": "Anselme",
+            "username": "grumbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": false,
+          "id": "9b89a372630c9fbab45d0e9c95521e61063b02d8",
+          "message": "Merge pull request #3419 from grumbach/gas_info\n\nfeat: print information about gas costs",
+          "timestamp": "2026-01-23T03:12:54Z",
+          "tree_id": "9323149e835a1ee8886c8ef04ac752a448264396",
+          "url": "https://github.com/grumbach/autonomi/commit/9b89a372630c9fbab45d0e9c95521e61063b02d8"
+        },
+        "date": 1769147720429,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
