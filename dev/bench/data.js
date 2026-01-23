@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1769056704142,
+  "lastUpdate": 1769147621253,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -1247,6 +1247,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 6.7074872305629505,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "anselmega@gmail.com",
+            "name": "Anselme",
+            "username": "grumbach"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": false,
+          "id": "9b89a372630c9fbab45d0e9c95521e61063b02d8",
+          "message": "Merge pull request #3419 from grumbach/gas_info\n\nfeat: print information about gas costs",
+          "timestamp": "2026-01-23T03:12:54Z",
+          "tree_id": "9323149e835a1ee8886c8ef04ac752a448264396",
+          "url": "https://github.com/grumbach/autonomi/commit/9b89a372630c9fbab45d0e9c95521e61063b02d8"
+        },
+        "date": 1769147619661,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 1.0487278624642464,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 5.782913364169695,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 6.667927833821011,
             "unit": "MiB/s"
           }
         ]
