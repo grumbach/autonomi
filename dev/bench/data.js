@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1769147723943,
+  "lastUpdate": 1772589613760,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -1286,6 +1286,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 6.667927833821011,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3398478e907ff0394ff7862e55095c2c329fccb3",
+          "message": "Merge pull request #3470 from maidsafe/dependabot/npm_and_yarn/ant-node-nodejs/tar-7.5.9\n\nchore(deps-dev): bump tar from 7.5.7 to 7.5.9 in /ant-node-nodejs",
+          "timestamp": "2026-02-23T20:12:47Z",
+          "tree_id": "d07b9649a4e844894ddf0866d645b3927a7f65cc",
+          "url": "https://github.com/grumbach/autonomi/commit/3398478e907ff0394ff7862e55095c2c329fccb3"
+        },
+        "date": 1772589612997,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 1.036708940819801,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 5.667400978521399,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 6.587691524813015,
             "unit": "MiB/s"
           }
         ]
