@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1772589884650,
+  "lastUpdate": 1772589886308,
   "repoUrl": "https://github.com/grumbach/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -3427,6 +3427,40 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/grumbach/autonomi/commit/9b89a372630c9fbab45d0e9c95521e61063b02d8"
         },
         "date": 1769147720429,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Peak memory usage w/ upload",
+            "value": 15,
+            "unit": "MB"
+          },
+          {
+            "name": "Average memory usage w/ upload",
+            "value": 14,
+            "unit": "MB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3398478e907ff0394ff7862e55095c2c329fccb3",
+          "message": "Merge pull request #3470 from maidsafe/dependabot/npm_and_yarn/ant-node-nodejs/tar-7.5.9\n\nchore(deps-dev): bump tar from 7.5.7 to 7.5.9 in /ant-node-nodejs",
+          "timestamp": "2026-02-23T20:12:47Z",
+          "tree_id": "d07b9649a4e844894ddf0866d645b3927a7f65cc",
+          "url": "https://github.com/grumbach/autonomi/commit/3398478e907ff0394ff7862e55095c2c329fccb3"
+        },
+        "date": 1772589885729,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
